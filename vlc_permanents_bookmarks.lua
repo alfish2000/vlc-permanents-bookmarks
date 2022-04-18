@@ -480,8 +480,10 @@ function editBookmark()
         if next(selection) then
             if table_length(selection) == 1 then
                 for idx, _ in pairs(selection) do
-                    bookmarks_dialog['text_input']:set_text(Bookmarks[idx].label)
+                    Bookmarks[idx].label = bookmarks_dialog['text_input']:get_text()
                     selectedBookmarkId = idx
+                    table_save(Bookmarks, bookmarkFilePath)
+                    showBookmarks()
                     return
                 end
             else
